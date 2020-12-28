@@ -7,14 +7,20 @@
     <author email="zhaoyunzhou@zhuanzhuan.com" href="https://github.com/cdr/code-server">
        zhaoyunzhou
     </author>
-    <content src="index.html" />
+    <content src="http://192.168.124.17:9999/" />
     <access origin="*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
+    <access origin="http://*/*" />  
+    <access origin="https://*/*" />  
+    <!-- <allow-intent href="http://*/*" /> -->
+    <!-- <allow-intent href="https://*/*" /> -->
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="http://*/*" />  
+    <allow-navigation href="https://*/*" />  
+    <allow-navigation href="data:*" />  
+
     <platform name="android">
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:usesCleartextTraffic="true" />
@@ -22,6 +28,13 @@
         <allow-intent href="market:*" />
     </platform>
     <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="CDVURLProtocolCustom">
+                <param name="ios-package" value="CDVURLProtocolCustom" />
+            </feature>
+        </config-file>
+        <preference name="WebViewBounce" value="false" />
+        <preference name="DisallowOverscroll" value="true" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
