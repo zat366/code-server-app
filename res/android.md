@@ -4,7 +4,7 @@
         this.authenticationTokens.clear();
     }
     
-    private static final String INJECTION_TOKEN = "http://10.242.18.16:9999/static/"; //新增
+    private static final String INJECTION_TOKEN = "http://10.242.18.16:9999/static/"; //新增 commit + rootpath
 
     @Override
     @SuppressWarnings("deprecation")
