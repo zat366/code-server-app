@@ -5,7 +5,7 @@
 
 @end
 
-NSString* const kCDVAssetsLibraryPrefixes = @"http://10.242.18.16:9999/static/c4610f7829701aadb045d450013b84491c30580d/root/code-server/";
+NSString* const kCDVAssetsLibraryPrefixes = @"http://ip:port/static/c4610f7829701aadb045d450013b84491c30580d/root/code-server/";
 
 @implementation CDVURLProtocolCustom
 
@@ -50,7 +50,7 @@ NSString* const kCDVAssetsLibraryPrefixes = @"http://10.242.18.16:9999/static/c4
 {
     // NSLog(@"%@ received %@ - start", self, NSStringFromSelector(_cmd));
     NSString* url=super.request.URL.resourceSpecifier;
-    NSString* cordova = [url stringByReplacingOccurrencesOfString:@"//10.242.18.16:9999/static/c4610f7829701aadb045d450013b84491c30580d/root/code-server/" withString:@""];
+    NSString* cordova = [url stringByReplacingOccurrencesOfString:@"//ip:port/static/c4610f7829701aadb045d450013b84491c30580d/root/code-server/" withString:@""];
     NSURL* startURL = [NSURL URLWithString:cordova];
     
     
