@@ -47,7 +47,7 @@ NSString* const kCDVAssetsLibraryPrefixes = @"http://injection/cordova.js";
     NSURL* theUrl = [theRequest URL];
     
     // 判断是否是我们定义的url，若是，返回YES，继续执行其他方法，若不是，返回NO，不执行其他方法
-    if ([[theUrl absoluteString] hasPrefix:kCDVAssetsLibraryPrefixes]) {
+    if ([[theUrl absoluteString] hasPrefix:kCDVAssetsLibraryPrefixes] && [[theUrl absoluteString] hasSuffix:@".js"]) {
         return YES;
     }
     
