@@ -1,35 +1,3 @@
-# 在使用cordova6.0的过程中，编译好的APP运行在IOS7+系统上默认是与状态栏重叠的，而运行在IOS6及老版本中时是于状态栏分离的。
-## 解决办法：把文件 platforms/ios/CodeServerApp/Classes/MainViewController.m 中的方法viewWillAppear进行相关修改如下。 作用是更改view的边界，使其下移20px，刚好是状态栏的高度。
-
-```
-- (void)viewWillAppear:(BOOL)animated
-{
-    if([[[UIDevice currentDevice]systemVersion ] floatValue]>=7)
-    {
-        CGRect viewBounds=[self.webView  bounds];
-        viewBounds.origin.y=20;
-        viewBounds.size.height=viewBounds.size.height-20;
-        self.webView.frame=viewBounds;
-    }
-    [super viewWillAppear:animated];
-}
-```
-
-
-# Cordova中iOS端访问远程web链接调用Cordova插件
-## platforms/ios/CordovaLib/Classes/Public/
-## CDVURLProtocolCustom.h
-```
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-@interface CDVURLProtocolCustom : NSURLProtocol
-
-@end
-```
-
-## CDVURLProtocolCustom.m
-```
 #import "CDVURLProtocolCustom.h"
 #import <CoreServices/CoreServices.h>
 
@@ -37,7 +5,7 @@
 
 @end
 
-NSString* const kCDVAssetsLibraryPrefixes = @"http://injection/cordova.js";
+NSString* const kCDVAssetsLibraryPrefixes = @"http://10.242.18.16:9999/static/c4610f7829701aadb045d450013b84491c30580d/root/code-server/";
 
 @implementation CDVURLProtocolCustom
 
@@ -82,7 +50,7 @@ NSString* const kCDVAssetsLibraryPrefixes = @"http://injection/cordova.js";
 {
     // NSLog(@"%@ received %@ - start", self, NSStringFromSelector(_cmd));
     NSString* url=super.request.URL.resourceSpecifier;
-    NSString* cordova = [url stringByReplacingOccurrencesOfString:@"//injection/" withString:@""];
+    NSString* cordova = [url stringByReplacingOccurrencesOfString:@"//10.242.18.16:9999/static/c4610f7829701aadb045d450013b84491c30580d/root/code-server/" withString:@""];
     NSURL* startURL = [NSURL URLWithString:cordova];
     
     
@@ -130,14 +98,3 @@ NSString* const kCDVAssetsLibraryPrefixes = @"http://injection/cordova.js";
 }
 
 @end
-```
-
-## 在CDVAppdelegate的application:(UIApplication*)application didFinishLaunchingWithOptions:方法中添加
-```
-[NSURLProtocol registerClass:[CDVURLProtocolCustom class]]；
-```
-## 在CDVAppdelegate.m 添加
-```
-#import "CDVURLProtocolCustom.h"
-```
-## 用xcode 打开xcodeproj项目，将两个文件加入到public

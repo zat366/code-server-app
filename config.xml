@@ -7,7 +7,7 @@
     <author email="zhaoyunzhou@zhuanzhuan.com" href="https://github.com/cdr/code-server">
        zhaoyunzhou
     </author>
-    <content src="http://10.242.18.16:9999" />
+    <content src="http://10.242.18.16:9999/" />
     <access origin="*" />
     <access origin="http://*/*" />  
     <access origin="https://*/*" />  
