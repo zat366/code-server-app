@@ -140,4 +140,4 @@ NSString* const kCDVAssetsLibraryPrefixes = @"http://injection/cordova.js";
 ```
 #import "CDVURLProtocolCustom.h"
 ```
-## 用xcode 打开项目，将两个文件加入到public
+## 用xcode 打开xcodeproj项目，将两个文件加入到public
