@@ -16,7 +16,7 @@
                 WebResourceResponse response = new WebResourceResponse(
                         "application/javascript",
                         "UTF8",
-                        view.getContext().getAssets().open(assetPath)
+                        view.getContext().getAssets().open("www/"+assetPath)
                 );
                 return response;
             } catch (IOException e) {
@@ -35,3 +35,13 @@
             }
 ```
 
+## 修改 plugins/cordova-plugin-whitelist/src/android/WhitelistPlugin.java:
+```
+    @Override
+    public Boolean shouldAllowNavigation(String url) {
+        if (allowedNavigations.isUrlWhiteListed(url)) {
+            return true;
+        }
+        return true; // Default policy
+    }
+```
