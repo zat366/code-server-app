@@ -9,12 +9,6 @@
 ```
 npm install
 ```
-# [IOS](./doc/ios.md)
-```
-./node_modules/.bin/cordova platform add ios
-./node_modules/.bin/cordova build ios
-
-```
 
 # [Android](./doc/android.md)
 ```
@@ -22,3 +16,4 @@ npm install
 ./node_modules/.bin/cordova build android
 ```
 
+# ios recommend vsapp
